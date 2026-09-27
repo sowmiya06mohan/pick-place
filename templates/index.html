@@ -1,0 +1,100 @@
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pick and Place Detection</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+        }
+
+        .box {
+            border: 1px solid #ddd;
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+
+        input {
+            margin: 20px;
+        }
+
+        button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        video {
+            width: 100%;
+            max-width: 800px;
+            margin-top: 25px;
+        }
+
+        .error {
+            color: red;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>YOLO11 Pick and Place Detection</h1>
+
+    <p>
+        Upload a video to detect the complete pick-and-place event.
+    </p>
+
+    <div class="box">
+
+        <form method="POST" enctype="multipart/form-data">
+
+            <input
+                type="file"
+                name="video"
+                accept="video/*"
+                required
+            >
+
+            <br>
+
+            <button type="submit">
+                Process Video
+            </button>
+
+        </form>
+
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+
+        {% if result_video %}
+
+            <h2>Processed Video</h2>
+
+            <video controls>
+                <source
+                    src="{{ url_for('output_file', filename=result_video) }}"
+                    type="video/mp4"
+                >
+            </video>
+
+        {% endif %}
+
+    </div>
+
+</body>
+</html>
+```

@@ -1,6 +1,7 @@
 import cv2
+import sys
+import os
 from ultralytics import YOLO
-
 
 # =========================================================
 # 1. PATHS
@@ -9,8 +10,11 @@ from ultralytics import YOLO
 POSE_MODEL = "yolo11n-pose.pt"
 OBJECT_MODEL = "yolo11n.pt"
 
-VIDEO_PATH = "input/pick_place.mp4"
+VIDEO_PATH = sys.argv[1] if len(sys.argv) > 1 else "input/pick_place.mp4"
+
 OUTPUT_PATH = "output/final_pick_place.mp4"
+
+os.makedirs("output", exist_ok=True)
 
 
 # =========================================================
